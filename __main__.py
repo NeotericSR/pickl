@@ -18,6 +18,12 @@ def storeData():
     # source, destination
     pickle.dump(db, dbfile)
 
+    # pickling without a file
+    dump_var = pickle.dumps(db)
+
+    return dump_var
+
+
 def loadData():
     # for reading also binary mode is important
     dbfile = open('examplePickle', 'rb')
@@ -26,6 +32,10 @@ def loadData():
         print(keys, '=>', db[keys])
     dbfile.close()
 
+def loadVarPickle(pickleVar):
+    return pickle.loads(pickleVar)
+
 if __name__ == '__main__':
-    storeData()
+    dump_var = storeData()
     loadData()
+    print("load pickle from variable: " + str(loadVarPickle(dump_var)))
